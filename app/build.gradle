@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -43,8 +45,10 @@ dependencies {
     implementation(Deps.fragmentKtx)
     implementation(Deps.viewModel)
     implementation(Deps.liveData)
+    implementation(Deps.coil)
+    implementation(Deps.hiltAndroid)
+    kapt(Deps.hiltCompiler)
     testImplementation(Deps.junit)
-    testImplementation(Deps.coil)
     androidTestImplementation(Deps.extJunit)
     androidTestImplementation(Deps.espressoCore)
 }
