@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
     implementation(Deps.coreKtx)
     implementation(Deps.kotlin)
     implementation(Deps.okhttpBom)
