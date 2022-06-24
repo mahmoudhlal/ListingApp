@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.domain.common.Result
 import com.example.domain.entities.ListingModel
 import com.example.listingapp.R
 import com.example.listingapp.databinding.FragmentListingsBinding
+import com.example.listingapp.ui.details.LISTING_MODEL
 import com.example.listingapp.utils.hide
 import com.example.listingapp.utils.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -70,9 +73,16 @@ class ListingsFragment : Fragment() {
             showError("Sorry no listings founded")
             return
         }
-        val adapter = ListingsAdapter(listings){}
+        val adapter = ListingsAdapter(listings){
+            openListingDetailsPage(it)
+        }
         binding.listingsRec.adapter = adapter
         showDataFrame()
+    }
+
+    private fun openListingDetailsPage(item: ListingModel){
+        val bundle = bundleOf(LISTING_MODEL to item)
+        findNavController().navigate(R.id.action_listingsFragment_to_listingDetailsFragment , bundle)
     }
 
     private fun showDataFrame(){
