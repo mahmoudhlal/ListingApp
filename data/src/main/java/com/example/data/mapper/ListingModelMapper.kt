@@ -20,5 +20,6 @@ class ListingModelMapper {
     }
 
     private fun dateAndTimePattern() =
-        "${DateFormatCodes.MMM} ${DateFormatCodes.dd}, ${DateFormatCodes.yyyy} ${DateFormatCodes.HH}:${DateFormatCodes.mm}"
+        "${DateFormatCodes.MMM} ${DateFormatCodes.dd}, ${DateFormatCodes.yyyy} " +
+                "${DateFormatCodes.HH}:${DateFormatCodes.mm} ${DateFormatCodes.a}"
 }

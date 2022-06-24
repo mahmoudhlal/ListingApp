@@ -6,7 +6,7 @@ import java.util.*
 fun String.toFormatDate(pattern: String): String {
     val date = this.toDate()
     return try {
-        customFormatter(pattern).format(this)
+        customFormatter(pattern).format(date)
     } catch (e: Exception) {
         ""
     }

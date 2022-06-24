@@ -39,15 +39,22 @@ class ListingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModelObserver()
+        onClick()
+    }
 
+    private fun onClick() {
+        binding.btnRetry.setOnClickListener {
+            getListings()
+        }
     }
 
     private fun viewModelObserver(){
         viewModel.listings.observe(viewLifecycleOwner){
             when(it){
-                is Result.Success -> {}
-                is Result.Error -> {}
-                is Result.Loading -> {}
+                is Result.Success -> renderData(it.data)
+                is Result.Error -> showError(it.msg)
+                is Result.Loading -> showLoading()
             }
         }
     }
@@ -57,7 +64,19 @@ class ListingsFragment : Fragment() {
     }
 
     private fun renderData(listings: List<ListingModel>){
+        hideLoading()
+        hideError()
+        if (listings.isEmpty()) {
+            showError("Sorry no listings founded")
+            return
+        }
+        val adapter = ListingsAdapter(listings){}
+        binding.listingsRec.adapter = adapter
+        showDataFrame()
+    }
 
+    private fun showDataFrame(){
+        binding.dataFrame.show()
     }
 
     private fun showLoading(){
@@ -68,7 +87,9 @@ class ListingsFragment : Fragment() {
         binding.progress.hide()
     }
 
-    private fun showError(){
+    private fun showError(errorMsg: String){
+        hideLoading()
+        binding.errorSubTitle.text = errorMsg
         binding.errorFrame.show()
     }
 

@@ -17,5 +17,5 @@ data class Listing(
 )
 
 data class Pagination(
-    val key: Any
+    val key: String?
 )

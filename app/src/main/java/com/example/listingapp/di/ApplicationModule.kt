@@ -6,6 +6,7 @@ import com.example.data.mapper.ListingModelMapper
 import com.example.data.repositories.ListingsRepositoryImpl
 import com.example.domain.repositories.ListingsRepository
 import com.example.domain.usecases.GetListingsUseCase
+import com.example.listingapp.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
