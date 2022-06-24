@@ -1,5 +1,5 @@
 # ListingApp
-## Listings app that implements MVVM architecture using Kotlin, Hilt-Dagger, Coroutines, Retrofit2, DataBinding and Clean Architecture.
+## Listings app that implements MVVM architecture using Kotlin, Hilt-Dagger, Coroutines, Retrofit2, Navigation Component, DataBinding and Clean Architecture.
 
 #### The app module has following packages:
 
