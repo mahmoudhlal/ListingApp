@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.listingapp.R
 import com.example.listingapp.databinding.FragmentListingsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ListingsFragment : Fragment() {
 
     private lateinit var binding: FragmentListingsBinding
@@ -22,6 +23,10 @@ class ListingsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_listings, container, false)
 
         return binding.root
+    }
+
+    private fun viewModelObserver(){
+
     }
 
 }
