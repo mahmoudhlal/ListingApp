@@ -5,6 +5,7 @@ data class ListingApiResponse(
     val results: List<Listing>
 )
 
+
 data class Listing(
     val created_at: String,
     val image_ids: List<String>,
