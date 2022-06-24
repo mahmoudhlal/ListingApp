@@ -22,3 +22,4 @@ entities: contains data model classes.
 repository: contains abstract repositories that implemented in data module.
 usecases: contains use cases classes.
 
+
