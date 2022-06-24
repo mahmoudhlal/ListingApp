@@ -6,14 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import com.example.domain.common.Result
+import com.example.domain.entities.ListingModel
 import com.example.listingapp.R
 import com.example.listingapp.databinding.FragmentListingsBinding
+import com.example.listingapp.utils.hide
+import com.example.listingapp.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ListingsFragment : Fragment() {
 
+
+    private val viewModel : ListingsViewModel by viewModels()
     private lateinit var binding: FragmentListingsBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        getListings()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,8 +37,43 @@ class ListingsFragment : Fragment() {
         return binding.root
     }
 
-    private fun viewModelObserver(){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+    }
+
+    private fun viewModelObserver(){
+        viewModel.listings.observe(viewLifecycleOwner){
+            when(it){
+                is Result.Success -> {}
+                is Result.Error -> {}
+                is Result.Loading -> {}
+            }
+        }
+    }
+
+    private fun getListings(){
+        viewModel.getListings()
+    }
+
+    private fun renderData(listings: List<ListingModel>){
+
+    }
+
+    private fun showLoading(){
+        binding.progress.show()
+    }
+
+    private fun hideLoading(){
+        binding.progress.hide()
+    }
+
+    private fun showError(){
+        binding.errorFrame.show()
+    }
+
+    private fun hideError(){
+        binding.errorFrame.hide()
     }
 
 }
